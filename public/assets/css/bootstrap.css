@@ -4359,6 +4359,11 @@ input[type="button"].btn-block {
   justify-content: space-between;
 }
 
+.navbar-brand img {
+  max-height: 45px; /* Adjust the size as needed */
+  margin-right: 10px; /* Add spacing to the right */
+}
+
 .navbar-brand {
   display: inline-block;
   padding-top: 0.3125rem;

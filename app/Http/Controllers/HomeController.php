@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 
+use App\Models\Appointment; 
+
 class HomeController extends Controller
 {
     public function redirect() 
@@ -16,7 +18,7 @@ class HomeController extends Controller
         {
             if(Auth::user()->usertype=='0')
             {
-                return view('user.home');
+                return view('user.userdashboard');
             }
             else
             {
@@ -34,6 +36,28 @@ class HomeController extends Controller
     public function index() 
     {
         return view('user.home');
+    }
+
+    public function appointment(Request $request)
+    {
+        $data = new appointment;
+
+        $data->name=$request->name;
+        $data->email=$request->email;
+        $data->phone=$request->phone;
+        $data->branch=$request->branch;
+        $data->date=$request->date;
+        $data->message=$request->message;
+        $data->status='In progress';
+
+        if (Auth::id())
+        {
+            $data->user_id=Auth::user()->id;
+        }
+
+        $data->save();
+
+        return redirect()->back()->with('message', 'Appintment request successful. We will contact you soon');
     }
 
 }
