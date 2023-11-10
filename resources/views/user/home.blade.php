@@ -19,6 +19,29 @@
   <link rel="stylesheet" href="../assets/vendor/animate/animate.css">
 
   <link rel="stylesheet" href="../assets/css/theme.css">
+
+  <style>
+    .page-hero.bg-image {
+      position: relative;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 500px; /* Set the height as needed */
+    }
+
+    .page-hero.bg-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.6;
+      background-color: #343531;
+    }
+
+    
+  </style>
 </head>
 <body>
 
@@ -69,6 +92,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupport">
           <ul class="navbar-nav ml-auto">
+        
             <li class="nav-item active">
               <a class="nav-link" href="index.html">Home</a>
             </li>
@@ -96,17 +120,17 @@
             @else
 
             <li class="nav-item">
-              <a class="btn btn-primary ml-lg-3" href="{{('login')}}">Login</a>
+              <a class="btn btn-primary ml-lg-3 btn-3d" href="{{('login')}}">Login</a>
             </li>
 
             <li class="nav-item">
-              <a class="btn btn-primary ml-lg-3" href="{{('register')}}">Signup</a>
+              <a class="btn btn-primary ml-lg-3 btn-3d" href="{{('register')}}">Signup</a>
             </li>
 
             @endauth
 
             @endif
-
+          
 
 
 
@@ -131,16 +155,16 @@
 
   @endif
 
-  <div class="page-hero bg-image overlay-dark" style="background-image: url(../assets/img/bg_image_1.jpg);">
+  <div class="page-hero bg-image overlay-dark" id="custom-background">
     <div class="hero-section">
       <div class="container text-center wow zoomIn">
         <span class="subhead">The all New Srilanka Passport Online system - PASSPORTEASE paves a way to apply, renew passports easily</span>
-        <h1 class="display-4">- PASSPORTEASE - </h1>
+        <h1 class="display-4">PASSPORTEASE</h1>
 
-        <a href="#" class="btn btn-primary">New Passport</a>
-        <a href="#" class="btn btn-primary">Passport Renewal</a>
-        <a href="#" class="btn btn-primary">Appointment</a>
-        <a href="#" class="btn btn-primary">Passport-status</a>
+        <a href="#" class="btn btn-primary btn-3d">New Passport</a>
+        <a href="#" class="btn btn-primary btn-3d">Passport Renewal</a>
+        <a href="#" class="btn btn-primary btn-3d">Appointment</a>
+        <a href="#" class="btn btn-primary btn-3d">Passport-status</a>
       </div>
     </div>
   </div>
@@ -150,28 +174,36 @@
     <div class="page-section py-3 mt-md-n5 custom-index">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-4 py-3 py-md-0">
+          <div class="col-md-3 py-3 py-md-0">
             <div class="card-service wow fadeInUp">
               <div class="circle-shape bg-secondary text-white">
-                <span class="mai-chatbubbles-outline"></span>
+                <span class="mai-laptop-outline"></span>
               </div>
-              <p><span>Chat</span> with a doctors</p>
+              <p><span>Application</span> Online</p>
             </div>
           </div>
-          <div class="col-md-4 py-3 py-md-0">
+          <div class="col-md-3 py-3 py-md-0">
             <div class="card-service wow fadeInUp">
-              <div class="circle-shape bg-primary text-white">
-                <span class="mai-shield-checkmark"></span>
+              <div class="circle-shape bg-secondary text-white">
+                <span class="mai-scan"></span>
               </div>
-              <p><span>One</span>-Health Protection</p>
+              <p><span>Easy</span> Verification</p>
             </div>
           </div>
-          <div class="col-md-4 py-3 py-md-0">
+          <div class="col-md-3 py-3 py-md-0">
             <div class="card-service wow fadeInUp">
-              <div class="circle-shape bg-accent text-white">
-                <span class="mai-basket"></span>
+              <div class="circle-shape bg-secondary text-white">
+                <span class="mai-location"></span>
               </div>
-              <p><span>One</span>-Health Pharmacy</p>
+              <p><span>Track the</span> Process</p>
+            </div>
+          </div>
+          <div class="col-md-3 py-3 py-md-0">
+            <div class="card-service wow fadeInUp">
+              <div class="circle-shape bg-secondary text-white">
+                  <span class="mai-documents"></span>
+              </div>
+              <p><span>Receive</span> Passport</p>
             </div>
           </div>
         </div>
@@ -188,7 +220,7 @@
           </div>
           <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
             <div class="img-place custom-img-1">
-              <img src="../assets/img/bg-doctor.png" alt="">
+              <img src="../assets/img/Airbusairline.png" alt="">
             </div>
           </div>
         </div>
@@ -279,6 +311,13 @@
 <script src="../assets/vendor/wow/wow.min.js"></script>
 
 <script src="../assets/js/theme.js"></script>
+
+<script>
+  $(document).ready(function () {
+    // Set the background image dynamically
+    $('#custom-background').css('background-image', 'url(https://images.pexels.com/photos/33545/sunrise-phu-quoc-island-ocean.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)');
+  });
+</script>
   
 </body>
 </html>

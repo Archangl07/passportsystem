@@ -2548,6 +2548,28 @@ textarea.form-control {
   }
 }
 
+
+
+/* custom css style */
+.btn-glow:hover {
+  box-shadow: 0 0 10px #5F9EA0; /* You can adjust the color and size of the glow */
+  transition: box-shadow 0.3s ease; /* Add a smooth transition effect */
+}
+
+.btn-3d {
+  background-color: #007bff; /* Adjust the color to match your btn-primary */
+  border-color: #007bff; /* Adjust the color to match your btn-primary */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box-shadow for the 3D effect */
+  transition: box-shadow 0.3s ease; /* Add a smooth transition effect for the box-shadow */
+}
+
+.btn-3d:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase the box-shadow on hover for a lifted effect */
+}
+/* --end custom css style */
+
+
+
 .btn:hover {
   color: #212529;
   text-decoration: none;

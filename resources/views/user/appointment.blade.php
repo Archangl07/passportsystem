@@ -11,7 +11,7 @@
             <input type="text" name="name" class="form-control" placeholder="Full name" >
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-            <input type="text" name="email" class="form-control" placeholder="Email address..">
+            <input type="text" name="email" class="form-control" placeholder="Email address.">
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
             <input type="date" class="form-control">

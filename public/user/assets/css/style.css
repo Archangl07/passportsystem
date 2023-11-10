@@ -1785,7 +1785,9 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #343a40;
-  --bs-body-bg: #fff; }
+  --bs-body-bg: #fff;
+  --bg-cyan-500: 6, 182, 212;
+}
 
 *,
 *::before,

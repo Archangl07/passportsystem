@@ -828,7 +828,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 
 .topbar {
-  border-bottom: 1px solid #E8EEE4;
+  border-bottom: 3px solid #61aaad;
 }
 
 .topbar .row {
@@ -1088,8 +1088,8 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .img-place > img {
-  width: 100%;
-  height: 100%;
+  width: 500px;
+  height: 500px;
 }
 
 .bg-image {
@@ -1115,7 +1115,7 @@ a.text-dark:hover, a.text-dark:focus {
   width: 100%;
   height: 100%;
   opacity: 0.6;
-  background-color: #343531;
+  background-color: #336da8;
 }
 
 .bg-image > * {
@@ -1186,6 +1186,7 @@ a.text-dark:hover, a.text-dark:focus {
   padding-top: 80px;
   padding-bottom: 80px;
   overflow: hidden;
+  
 }
 
 .page-hero {

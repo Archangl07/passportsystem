@@ -16,13 +16,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
-                <span class="menu-title">Dashboard</span>
-                <i class="mdi mdi-home menu-icon"></i>
+              <a class="nav-link" href="{{url('profile_view')}}">
+                <span class="menu-title">Profile Info</span>
+                <i class="mdi mdi-contacts menu-icon""></i>
               </a>
             </li>
 
-            
+
             <!-- <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-title">Basic UI Elements</span>
@@ -39,9 +39,9 @@
 
 
             <li class="nav-item">
-              <a class="nav-link" href="pages/icons/mdi.html">
-                <span class="menu-title">Icons</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
+              <a class="nav-link" href="{{url('my_appointment')}}">
+                <span class="menu-title">Appointment</span>
+                <i class="mdi mdi-calendar-check menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">

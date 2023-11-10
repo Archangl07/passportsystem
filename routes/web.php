@@ -21,8 +21,6 @@ use App\Http\Controllers\AdminController;
 //Indexpage route
 Route::get('/', [HomeController::class,'index']);
 
-
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -39,3 +37,8 @@ Route::get('/add_user_view', [AdminController::class,'addview']);
 Route::post('/add_user', [AdminController::class,'adduser']);
 
 Route::post('/appointment', [HomeController::class,'appointment']);
+
+Route::get('/profile_view', [HomeController::class, 'profileview'])->name('profile.view');
+Route::post('/profile_update', [HomeController::class, 'updateProfile'])->name('profile.update');
+
+Route::get('/my_appointment', [HomeController::class, 'myappointment']);
