@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('document', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('report_id');
+            $table->id()->primary();
+            $table->unsignedBigInteger('report_id');
             $table->unsignedBigInteger('user_id');
 
-            $table->binary('birth_certificate')->nullable();
-            $table->binary('NIC')->nullable();
-            $table->binary('Medical_certificate')->nullable();
-            $table->binary('Fingerprint')->nullable();
-            $table->binary('Digitalphoto')->nullable();
+            $table->string('birth_certificate')->nullable();
+            $table->string('NIC')->nullable();
+            $table->string('Medical_certificate')->nullable();
+            $table->string('Fingerprint')->nullable();
+            $table->string('Digitalphoto')->nullable();
             $table->timestamps();
 
             // Define foreign key constraints

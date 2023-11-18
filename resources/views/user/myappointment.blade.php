@@ -97,24 +97,57 @@
         </form>
   </div> <!-- close tab-pane -->
 
-  <div class="tab-pane fade" id="view-appointments" role="tabpanel" aria-labelledby="view-appointments-tab">
-    <div>
-        <table class="table">
-          <tr>
-            <th>Branch</th>
-            <th>Date</th>
-            <th>Message</th>
-            <th>Status</th>
-          </tr>
-          <!-- Populate this section with appointment data -->
-          <tr>
-            <td>Branch Name</td>
-            <td>Appointment Date</td>
-            <td>Appointment Message</td>
-            <td>Appointment Status</td>
-          </tr>
-        </table>
-      </div>
+  <div class="tab-pane fade mb-4" id="view-appointments" role="tabpanel" aria-labelledby="view-appointments-tab">
+
+
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Branch
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Message
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+
+        @foreach($appoint as $appoints)
+        <tbody>
+            <tr class="odd:bg-white  even:bg-gray-50  border-b ">
+            <td class="px-6 py-4">
+                    {{$appoints->branch}}
+                </td>
+                <td class="px-6 py-4">
+                    {{$appoints->date}}
+                </td>
+                <td class="px-6 py-4">
+                    {{$appoints->message}}
+                </td>
+                <td class="px-6 py-4">
+                    {{$appoints->status}}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="{{url('cancel_appoint', $appoints->id)}}" onclick="return confirm('Are you sure you want to cancel appointment?')" 
+                    class="font-medium text-red-600  hover:underline">Cancel</a>
+                </td>
+            </tr>
+        </tbody>
+        @endforeach
+    </table>
+  </div>
+
+
   </div>    
 
         </div>
@@ -134,21 +167,12 @@
     <script>
       $(document).ready(function () {
         $('.alert button.close').on('click', function () {
-          $(this).parent().fadeOut('fast'); // Hide the parent of the clicked button (the message box)
+          $(this).parent().fadeOut('fast'); // Hide the parent of the clicked button
         });
-        $('#myTabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            // Get the target tab's ID
-            var targetTabId = $(e.target).attr('href');
-            
-            if (targetTabId === '#make-appointment') {
-                // This is the "Make an Appointment" tab, handle logic for this tab
-                console.log('Switched to Make an Appointment Tab');
-                // Add your logic for the "Make an Appointment" tab here
-            } else if (targetTabId === '#view-appointments') {
-                // This is the "View Appointments" tab, handle logic for this tab
-                console.log('Switched to View Appointments Tab');
-                // Add your logic for the "View Appointments" tab here
-            }
+
+        $('#myTabs a').on('click', function (e) {
+          e.preventDefault();
+          $(this).tab('show');
         });
       });
     </script>

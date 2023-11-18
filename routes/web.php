@@ -1,25 +1,24 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\AdminController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
+use Illuminate\Support\Facades\Log;
 
 //Indexpage route
 Route::get('/', [HomeController::class,'index']);
+
+Route::get('/test', function(){
+
+    return view('test');
+
+});
+
+Route::get('/home', [HomeController::class,'redirect'])->middleware('auth','verified');
 
 Route::middleware([
     'auth:sanctum',
@@ -42,3 +41,21 @@ Route::get('/profile_view', [HomeController::class, 'profileview'])->name('profi
 Route::post('/profile_update', [HomeController::class, 'updateProfile'])->name('profile.update');
 
 Route::get('/my_appointment', [HomeController::class, 'myappointment']);
+
+Route::get('/cancel_appoint/{id}', [HomeController::class, 'cancel_appoint']);
+
+Route::get('/showappointment', [AdminController::class, 'showappointment']);
+
+Route::get('/approved/{id}', [AdminController::class, 'approved']);
+Route::get('/cancelled/{id}', [AdminController::class, 'cancelled']);
+
+
+Route::post('/my_application', [HomeController::class, 'myapplication'])->name('new_application');
+
+Route::get('/my_application', [HomeController::class, 'application_form'])->name('application_form');
+
+
+Route::get('/manageuser', [AdminController::class, 'manage_user'])->name('manage_users');
+
+// Route::get('/showusers', [AdminController::class, 'showusers'])->name('show_users');
+Route::get('/searchusers', [AdminController::class, 'searchusers'])->name('search_users');

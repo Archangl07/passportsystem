@@ -64,3 +64,19 @@ $('document').ready(function() {
   new WOW().init();
 });
 
+$(document).ready(function () {
+  // Smooth scrolling for all links with a hash (e.g., #appointment-form)
+  $('a[href*="#appointment-form"]').on('click', function (event) {
+      if (this.hash !== '') {
+          event.preventDefault();
+
+          const hash = this.hash;
+
+          $('html, body').animate({
+              scrollTop: $(hash).offset().top
+          }, 800, function () {
+              window.location.hash = hash;
+          });
+      }
+  });
+});

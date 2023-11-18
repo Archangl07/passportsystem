@@ -79,6 +79,16 @@
                 </div>
                 </div>
 
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+                  <label>Current Password</label>
+                  <input type="password" class="form-control" name="password" value="{{ $user->password }}" placeholder="Current Password">
+                </div>
+
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+                  <label>New Password</label>
+                  <input type="password" class="form-control" name="new_password" placeholder="New Password">
+                </div>
+
                 <button type="submit" class="btn btn-primary mt-3 wow zoomIn" style="color: black;">Update</button>
             
 

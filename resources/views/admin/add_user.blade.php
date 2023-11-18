@@ -45,22 +45,22 @@
 
               <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                   <label>Full Name</label>
-                  <input type="text" style="color: black;" class="form-control" name="first_name" placeholder="Input first name" value="{{ old('first_name') }}" required class="rounded-lg form-input">
+                  <input type="text" style="color:white; background-color:black;" class="form-control" name="first_name" placeholder="Input first name" required class="rounded-lg form-input">
               </div>
 
               <div class="col-12 col-sm-6 py-2 wow fadeInRight">
                   <label>Last Name</label>
-                  <input type="text" style="color: black;" class="form-control" name="last_name" placeholder="Input last name" value="{{ old('last_name') }}" required class="rounded-lg form-input">
+                  <input type="text" style="color:white; background-color:black;" class="form-control" name="last_name" placeholder="Input last name" required class="rounded-lg form-input">
               </div>
 
               <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
                   <label>Email</label>
-                  <input type="email" style="color: black;" class="form-control" name="email" placeholder="Input email address" value="{{ old('email') }}" required class="rounded-lg form-input">
+                  <input type="email" style="color:white; background-color:black;" class="form-control" name="email" placeholder="Input email address" required class="rounded-lg form-input">
               </div>
 
               <div class="col-12 col-sm-6 py-2 wow fadeInRight">
                   <label>Phone</label>
-                  <input type="text" style="color: black;" class="form-control" name="phone" placeholder="Input contact number" value="{{ old('phone') }}" required class="rounded-lg form-input">
+                  <input type="text" style="color:white; background-color:black;" class="form-control" name="phone" placeholder="Input contact number" required class="rounded-lg form-input">
               </div>
 
               <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
@@ -70,16 +70,16 @@
 
               <div class="col-12 col-sm-6 py-2 wow fadeInUp">
                   <label>Password</label>
-                  <input type="password" style="color: black;" class="form-control" name="password" placeholder="Input a password" required class="rounded-lg form-input">
+                  <input type="password" style="color:white; background-color:black;" class="form-control" name="password" placeholder="Input a password" required class="rounded-lg form-input">
               </div>
 
               <div class="col-12 col-sm-6 py-2 wow fadeInUp">
                   <label>Confirm Password</label>
-                  <input type="password" style="color: black;" class="form-control" name="password_confirmation" placeholder="Retype password" required class="rounded-lg form-input">
+                  <input type="password" style="color:white; background-color:black;" class="form-control" name="password_confirmation" placeholder="Retype password" required class="rounded-lg form-input">
               </div>
 
               @error('password')
-              <span class="text-danger col-12 wow fadeInUp">{{ $message }}</span>
+              <span class="text-danger col-12 wow fadeInUp" style="color:white;">{{ $message }}</span>
               @enderror
 
               <div>
@@ -92,8 +92,6 @@
   </div>  
 
 </div>
-
-
 
     @include('admin.script')
     <!-- container-scroller -->

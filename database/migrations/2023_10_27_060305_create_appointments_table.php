@@ -14,15 +14,20 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('email')->nullable();
+            $table->date('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('branch')->nullable();
-            $table->string('date')->nullable();
+            $table->date('date')->nullable();
             $table->string('message')->nullable();
             $table->string('status')->nullable();
-            $table->string('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+
+            // Define foreign key constraints
+            $table->foreign('user_id')->references('id')->on('users');
         });
+
+
     }
 
     /**

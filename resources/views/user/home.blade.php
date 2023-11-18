@@ -36,14 +36,36 @@
       left: 0;
       width: 100%;
       height: 100%;
-      opacity: 0.6;
+      opacity: 0.7;
       background-color: #343531;
     }
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #FFFFFF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
 
+    #preloader img {
+      width: 150px; /* Adjust the width and height as needed */
+      height: 150px;
+    }
     
   </style>
 </head>
 <body>
+
+<!-- preloader -->
+<div id="preloader">
+  <img src="../assets/img/passportloader1.gif" alt="Loading...">
+</div>
+
 
   <!-- Back to top button -->
   <div class="back-to-top"></div>
@@ -54,9 +76,9 @@
       <div class="row">
         <div class="col-sm-4 text-sm">
           <div class="site-info">
-            <a href="#"><span class="mai-call text-primary"></span> +00 123 4455 6666</a>
+            <a href="#"><span class="mai-call text-primary"></span> +94 777777888</a>
             <span class="divider">|</span>
-            <a href="#"><span class="mai-mail text-primary"></span> mail@example.com</a>
+            <a href="#"><span class="mai-mail text-primary"></span> mail@passportease.com</a>
           </div>
         </div>
         <div class="col-sm-8 text-right text-sm">
@@ -73,8 +95,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
       <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="../assets/img/passportease.png" alt="One-Health Logo">
+        <a class="navbar-brand" href="{{url('/')}}">
+            <img src="../assets/img/passportease.png" alt="Logo">
         </a>
 
         <form action="#">
@@ -100,7 +122,7 @@
               <a class="nav-link" href="about.html">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="doctors.html">Doctors</a>
+              <a class="nav-link" href="doctors.html">Services</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="blog.html">News</a>
@@ -158,13 +180,13 @@
   <div class="page-hero bg-image overlay-dark" id="custom-background">
     <div class="hero-section">
       <div class="container text-center wow zoomIn">
-        <span class="subhead">The all New Srilanka Passport Online system - PASSPORTEASE paves a way to apply, renew passports easily</span>
-        <h1 class="display-4">PASSPORTEASE</h1>
+        <span class="subhead">The all New Srilanka Passport Online system</span>
+        <h1 class="display-4">PASSPORT-EASE</h1>
 
-        <a href="#" class="btn btn-primary btn-3d">New Passport</a>
-        <a href="#" class="btn btn-primary btn-3d">Passport Renewal</a>
-        <a href="#" class="btn btn-primary btn-3d">Appointment</a>
-        <a href="#" class="btn btn-primary btn-3d">Passport-status</a>
+        <a href="{{('login')}}" class="btn btn-primary btn-3d">New Passport</a>
+        <a href="{{('login')}}" class="btn btn-primary btn-3d">Passport Renewal</a>
+        <a href="{{('appointment') }}#appointment-form" class="btn btn-primary btn-3d">Appointment</a>
+        <a href="{{('login')}}" class="btn btn-primary btn-3d">Passport-status</a>
       </div>
     </div>
   </div>
@@ -214,13 +236,16 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6 py-3 wow fadeInUp">
-            <h1>Welcome to Your Health <br> Center</h1>
-            <p class="text-grey mb-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Accusantium aperiam earum ipsa eius, inventore nemo labore eaque porro consequatur ex aspernatur. Explicabo, excepturi accusantium! Placeat voluptates esse ut optio facilis!</p>
+            <h1>Welcome to Passportease <br> Online</h1>
+            <p class="text-grey mb-4">Your Gateway to Effortless Passport Services. Embark on a seamless journey with PassportEase - 
+              your one-stop solution for swift and hassle-free passport services. 
+              Our mission is to simplify the passport application and renewal process, 
+              ensuring a stress-free experience for you</p>
             <a href="about.html" class="btn btn-primary">Learn More</a>
           </div>
           <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
             <div class="img-place custom-img-1">
-              <img src="../assets/img/Airbusairline.png" alt="">
+              <img src="../assets/img/A350 XWB transparent.png" alt="">
             </div>
           </div>
         </div>
@@ -268,22 +293,22 @@
             <li><a href="#">Terms & Condition</a></li>
             <li><a href="#">Privacy</a></li>
             <li><a href="#">Advertise</a></li>
-            <li><a href="#">Join as Doctors</a></li>
+            <li><a href="#">Join as member</a></li>
           </ul>
         </div>
         <div class="col-sm-6 col-lg-3 py-3">
           <h5>Our partner</h5>
           <ul class="footer-menu">
             <li><a href="#">One-Fitness</a></li>
-            <li><a href="#">One-Drugs</a></li>
-            <li><a href="#">One-Live</a></li>
+            <li><a href="#">SL-immigration</a></li>
+            <li><a href="#">SL-MTV</a></li>
           </ul>
         </div>
         <div class="col-sm-6 col-lg-3 py-3">
           <h5>Contact</h5>
-          <p class="footer-link mt-2">351 Willow Street Franklin, MA 02038</p>
-          <a href="#" class="footer-link">701-573-7582</a>
-          <a href="#" class="footer-link">healthcare@temporary.net</a>
+          <p class="footer-link mt-2">351 Main Street Kandy, CP 20000</p>
+          <a href="#" class="footer-link">+94 777777888</a>
+          <a href="#" class="footer-link">mail@passportease.com</a>
 
           <h5 class="mt-3">Social Media</h5>
           <div class="footer-sosmed mt-3">
@@ -298,7 +323,7 @@
 
       <hr>
 
-      <p id="copyright">Copyright &copy; 2020 <a href="https://macodeid.com/" target="_blank">MACode ID</a>. All right reserved</p>
+      <p id="copyright">Copyright &copy; 2020 <a href="" target="_blank">azharazeez</a>. All right reserved</p>
     </div>
   </footer>
 
@@ -315,7 +340,13 @@
 <script>
   $(document).ready(function () {
     // Set the background image dynamically
-    $('#custom-background').css('background-image', 'url(https://images.pexels.com/photos/33545/sunrise-phu-quoc-island-ocean.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)');
+    $('#custom-background').css('background-image', 'url(../assets/img/test1.png)');
+  });
+
+  $(window).on('load', function () {
+    $('#preloader').delay(2000).fadeOut('slow', function () {
+      $(this).remove();
+    });
   });
 </script>
   
