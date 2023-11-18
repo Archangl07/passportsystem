@@ -59,3 +59,11 @@ Route::get('/manageuser', [AdminController::class, 'manage_user'])->name('manage
 
 // Route::get('/showusers', [AdminController::class, 'showusers'])->name('show_users');
 Route::get('/searchusers', [AdminController::class, 'searchusers'])->name('search_users');
+
+Route::get('/delete/user/{id}', [AdminController::class, 'deleteUser'])->name('delete_user');
+
+// Route::get('/edit/user/{id}', [AdminController::class, 'editUser'])->name('edit_user');
+Route::post('/update/user/{id}', [AdminController::class, 'updateUser'])->name('update_user');
+
+//Controller Method for Fetching User Details:
+Route::get('/get-user-details/{id}', [AdminController::class, 'getUserDetails'])->name('getuser_details');

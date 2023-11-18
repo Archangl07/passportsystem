@@ -86,6 +86,7 @@
                                                     <th scope="col" class="px-6 py-3">
                                                         
                                                     </th>
+                                                    
                                                 </tr>
                                             </thead>
 
@@ -108,9 +109,10 @@
                                                         {{$user->address }}
                                                    
                                                     <td class="px-6 py-4">
-                                                        <a href="{{url('')}}" 
-                                                        class="font-medium text-green-600  hover:underline mr-2">Edit</a>
-                                                        <a href="{{url('')}}" 
+                                                        <button type="button" class="edit-user-btn" data-user-id="{{ $user->id }}">Edit</button>
+                                                    </td> 
+                                                    <td class="px-6 py-4">    
+                                                        <a href="{{ route('delete_user', ['id' => $user->id]) }}" onclick="return confirm('Are you sure you want to delete?')" 
                                                         class="font-medium text-green-600  hover:underline mr-2">Delete</a>
                                                     </td>
                                                 </tr>
@@ -126,7 +128,7 @@
 
                             <div class="tab-pane fade mb-4" id="view-userments" role="tabpanel" aria-labelledby="view-userments-tab">
 
-                                    <form class="main-form" action="{{ url('add_user') }}" method="POST">
+                                    <form class="main-form" action="{{ route('update_user', ['id' => $user->id, 'user' => $user->id]) }}" method="POST">
                                         @csrf
                                         <div class="row mt-5 ">
 
@@ -152,25 +154,11 @@
 
                                         <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
                                             <label>Address</label>
-                                            <textarea name="Address" id="Address" class="form-control" rows="5" placeholder="Type your Address.." required class="rounded-lg form-input"></textarea>
+                                            <textarea name="address" id="address" class="form-control" rows="5" placeholder="Type your Address.." required class="rounded-lg form-input"></textarea>
                                         </div>
-
-                                        <div class="col-12 col-sm-6 py-2 wow fadeInUp">
-                                            <label>Password</label>
-                                            <input type="password" style="color:white; background-color:black;" class="form-control" name="password" placeholder="Input a password" required class="rounded-lg form-input">
-                                        </div>
-
-                                        <div class="col-12 col-sm-6 py-2 wow fadeInUp">
-                                            <label>Confirm Password</label>
-                                            <input type="password" style="color:white; background-color:black;" class="form-control" name="password_confirmation" placeholder="Retype password" required class="rounded-lg form-input">
-                                        </div>
-
-                                        @error('password')
-                                        <span class="text-danger col-12 wow fadeInUp" style="color:white;">{{ $message }}</span>
-                                        @enderror
 
                                         <div>
-                                            <button type="submit" class="btn btn-success wow zoomIn" style="color: white;">Register User</button>
+                                            <button type="submit" class="btn btn-success wow zoomIn" style="color: white;">Update</button>
                                         </div>
                                         </div>
                                     </form>
@@ -207,6 +195,35 @@
           $(this).tab('show');
         });
       });
+
+      
+      $('.edit-user-btn').on('click', function (e) {
+      e.preventDefault(); // Prevent the default behavior of the button
+      var userId = $(this).data('user-id');
+      var form = $('#view-userments form');
+      form.attr('action', form.attr('action') + '/' + userId);
+
+      $.ajax({
+        url: '/get-user-details/' + userId,
+        type: 'GET',
+        success: function (data) {
+          $('#view-userments [name="first_name"]').val(data.first_name);
+          $('#view-userments [name="last_name"]').val(data.last_name);
+          $('#view-userments [name="email"]').val(data.email);
+          $('#view-userments [name="phone"]').val(data.phone);
+          $('#view-userments [name="address"]').val(data.address);
+
+          // Trigger a click event on the tab link to switch the tab
+          $('#view-userments-tab').tab('show');
+        },
+        error: function (error) {
+          console.error('Error fetching user details:', error);
+        }
+      });
+    });
+
+  
+
     </script>
 
 

@@ -129,22 +129,18 @@ class AdminController extends Controller
 
     public function manage_user()
     {
-        if(Auth::id())
-
-        {
-            if(Auth::user()->usertype==1)
-            {
-                $data=user::all();
+        if (Auth::id()) {
+            $user = Auth::user();
+    
+            if ($user->usertype == 1) {
+                // Only retrieve and display records for usertype 0
+                $data = User::where('usertype', 0)->get();
+    
                 return view('admin.manageuser', compact('data'));
-            }
-
-            else
-            {
+            } else {
                 return redirect()->back();
             }
-        }
-        else
-        {
+        } else {
             return redirect('login');
         }
 
@@ -155,19 +151,27 @@ class AdminController extends Controller
     {
         $search = $request->input('search');
 
-        if (Auth::id() && Auth::user()->usertype == 1)
-        {
-            $data = User::where('first_name', 'like', "%$search%")
-                        ->orWhere('last_name', 'like', "%$search%")
-                        ->orWhere('email', 'like', "%$search%")
-                        ->orWhere('phone', 'like', "%$search%")
-                        ->orWhere('address', 'like', "%$search%")
-                        ->get();
+        if (Auth::id() && Auth::user()->usertype == 1) {
+            if (!empty($search)) {
+                $data = User::where('usertype', 0)
+                    ->where(function ($query) use ($search) {
+                        $query->where('first_name', 'like', "%$search%")
+                            ->orWhere('last_name', 'like', "%$search%")
+                            ->orWhere('email', 'like', "%$search%")
+                            ->orWhere('phone', 'like', "%$search%")
+                            ->orWhere('address', 'like', "%$search%");
+                    })
+                    ->get();
+            } else {
+                // If search term is empty, fetch all records where usertype=0
+                $data = User::where('usertype', 0)->get();
+            }
+    
             return view('admin.manageuser', compact('data'));
         } else {
             return redirect()->back();
         }
-
+        
     }
 
     // public function showusers()
@@ -191,6 +195,95 @@ class AdminController extends Controller
     //         return redirect('login');
     //     }
     // }
+
+    public function deleteUser($id)
+    {
+        // find the user id
+        $user = User::find($id);
+
+        if ($user) {
+            //delete user
+            $user->delete();
+
+            return redirect()->back()->with('message', 'User deleted successfully');
+        }
+        
+        return redirect()->back()->with('error', 'User not found.');
+    }
+
+
+    // fetch details using your controller
+    public function getUserDetails($id)
+    {
+        $user = User::find($id);
+
+        return response()->json([
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+            'phone' => $user->phone,
+            'address' => $user->address,
+        ]);
+    }
+
+
+    public function updateUser(Request $request, $id)
+    {
+        // Validate the form data
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+        ]);
+
+        // Fetch the user by ID
+        $user = User::find($id);
+
+        // Check if the user exists
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
+        $changes = false; // Initialize the $changes variable as false
+
+        if (
+            $user->first_name !== $request->input('first_name') ||
+            $user->last_name !== $request->input('last_name') ||
+            $user->email !== $request->input('email') ||
+            $user->phone !== $request->input('phone') ||
+            $user->address !== $request->input('address')
+        ) {
+            $changes = true;
+        }
+
+        if ($changes) {
+            // Create an array to store the updated data
+            $updatedData = [
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'address' => $request->input('address'),
+            ];
+
+            $user->update($updatedData);
+
+
+            return redirect()->back()->with('success', 'Profile updated successfully.');
+        } else 
+        
+        {
+            return redirect()->back()->with('error', 'No changes were made to your profile.');
+        }
+    }
+        
+
+
+
+            
+        
 
 
 
