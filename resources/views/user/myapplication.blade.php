@@ -48,7 +48,11 @@
           <!-- messagebox condition end -->
 
           <h1 class="text-center wow fadeInUp">New Passport Application</h1>
+
+
+          <!-- document popup btn -->
           <button id="openPopupBtn">+</button>
+          <!-- document popup btn -->
 
             <form class="main-form" method="POST" action="{{ url('my_application') }}">
               @csrf
@@ -225,7 +229,7 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('user.script')
-
+    
     
     <!-- End custom js for this page -->
   </body>

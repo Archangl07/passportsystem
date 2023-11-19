@@ -10,7 +10,9 @@
     <script src="user/assets/js/misc.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <script src="user/assets/js/dashboard.js"></script>
     <script src="user/assets/js/todolist.js"></script>
-    <script src="user/asset/js/application.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ asset('user/assets/js/application.js') }}"></script>
+    
