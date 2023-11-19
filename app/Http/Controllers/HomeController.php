@@ -253,4 +253,24 @@ class HomeController extends Controller
     }
 
 
+    public function saveDocuments(Request $request)
+{
+    $user = auth()->user();
+
+    // Validate the request
+    $request->validate([
+        'birth_certificate' => 'nullable|string',
+        // Add validation rules for other documents
+    ]);
+
+    // Save document paths to the database
+    $user->documents()->create([
+        'birth_certificate' => $request->input('birth_certificate'),
+        // Add other document fields here
+    ]);
+
+    return redirect()->back()->with('success', 'Documents saved successfully.');
+}
+
+
 }

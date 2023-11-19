@@ -36,19 +36,23 @@
                     <div class="tab-content" id="myTabsContent">
                             <div class="tab-pane fade show active" id="make-userment" role="tabpanel" aria-labelledby="make-userment-tab">
                                 <!-- messagebox condition -->
-                                @if(session()->has('message'))
-
+                                    @if(session()->has('success'))
                                     <div class="alert alert-success">
-                                    <button type="button" class="close" data-dismiss="alert">
+                                        <button type="button" class="close" data-dismiss="alert">
                                         x
-                                    </button>  
-
-                                    {{session()->get('message')}}
-
-
+                                        </button>
+                                        {{ session()->get('success') }}
                                     </div>
+                                    @endif
 
-                                @endif
+                                    @if(session()->has('error'))
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">
+                                        x
+                                        </button>
+                                        {{ session()->get('error') }}
+                                    </div>
+                                    @endif 
                                 <!-- messagebox condition end -->
                                 <h1 class="text-center wow fadeInUp"><strong>Users List</strong></h1>
 
@@ -109,7 +113,7 @@
                                                         {{$user->address }}
                                                    
                                                     <td class="px-6 py-4">
-                                                        <button type="button" class="edit-user-btn" data-user-id="{{ $user->id }}">Edit</button>
+                                                        <button type="button" class="edit-user-btn hover:underline" data-user-id="{{ $user->id }}">Edit</button>
                                                     </td> 
                                                     <td class="px-6 py-4">    
                                                         <a href="{{ route('delete_user', ['id' => $user->id]) }}" onclick="return confirm('Are you sure you want to delete?')" 
@@ -144,7 +148,7 @@
 
                                         <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
                                             <label>Email</label>
-                                            <input type="email" style="color:white; background-color:black;" class="form-control" name="email" placeholder="Input email address" required class="rounded-lg form-input">
+                                            <input type="email" style="color:white; background-color:black;" class="form-control" name="email" placeholder="Input email address" required class="rounded-lg form-input" readonly>
                                         </div>
 
                                         <div class="col-12 col-sm-6 py-2 wow fadeInRight">
@@ -198,30 +202,31 @@
 
       
       $('.edit-user-btn').on('click', function (e) {
-      e.preventDefault(); // Prevent the default behavior of the button
-      var userId = $(this).data('user-id');
-      var form = $('#view-userments form');
-      form.attr('action', form.attr('action') + '/' + userId);
+        e.preventDefault(); // Prevent the default behavior of the button
+        var userId = $(this).data('user-id');
+        var form = $('#view-userments form');
 
-      $.ajax({
-        url: '/get-user-details/' + userId,
-        type: 'GET',
-        success: function (data) {
-          $('#view-userments [name="first_name"]').val(data.first_name);
-          $('#view-userments [name="last_name"]').val(data.last_name);
-          $('#view-userments [name="email"]').val(data.email);
-          $('#view-userments [name="phone"]').val(data.phone);
-          $('#view-userments [name="address"]').val(data.address);
+        // Set the action attribute to the correct route
+        form.attr('action', '/update/user/' + userId);
 
-          // Trigger a click event on the tab link to switch the tab
-          $('#view-userments-tab').tab('show');
-        },
-        error: function (error) {
-          console.error('Error fetching user details:', error);
-        }
-      });
+        $.ajax({
+            url: '/get-user-details/' + userId,
+            type: 'GET',
+            success: function (data) {
+                $('#view-userments [name="first_name"]').val(data.first_name);
+                $('#view-userments [name="last_name"]').val(data.last_name);
+                $('#view-userments [name="email"]').val(data.email);
+                $('#view-userments [name="phone"]').val(data.phone);
+                $('#view-userments [name="address"]').val(data.address);
+
+                // Trigger a click event on the tab link to switch the tab
+                $('#view-userments-tab').tab('show');
+            },
+            error: function (error) {
+                console.error('Error fetching user details:', error);
+            }
+        });
     });
-
   
 
     </script>

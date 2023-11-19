@@ -67,3 +67,7 @@ Route::post('/update/user/{id}', [AdminController::class, 'updateUser'])->name('
 
 //Controller Method for Fetching User Details:
 Route::get('/get-user-details/{id}', [AdminController::class, 'getUserDetails'])->name('getuser_details');
+
+
+Route::post('/save-documents', [HomeController::class, 'saveDocuments'])->name('save_documents');
+

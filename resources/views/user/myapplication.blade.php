@@ -48,6 +48,7 @@
           <!-- messagebox condition end -->
 
           <h1 class="text-center wow fadeInUp">New Passport Application</h1>
+          <button id="openPopupBtn">+</button>
 
             <form class="main-form" method="POST" action="{{ url('my_application') }}">
               @csrf
@@ -199,6 +200,19 @@
               </div>
 
             </form>
+            
+            <!-- hidden form popup -->
+            <div id="documentPopup" style="display: none;">
+                <form id="documentForm">
+                    <!-- Add your form fields to select documents here -->
+                    <input type="file" name="birth_certificate">
+                    <!-- Add more file inputs for other documents -->
+                    <button type="submit">Save Documents</button>
+                </form>
+            </div>
+
+
+
           </div>
         </div>
         </div>  

@@ -205,7 +205,7 @@ class AdminController extends Controller
             //delete user
             $user->delete();
 
-            return redirect()->back()->with('message', 'User deleted successfully');
+            return redirect()->back()->with('success', 'User deleted successfully');
         }
         
         return redirect()->back()->with('error', 'User not found.');
@@ -246,12 +246,14 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'User not found.');
         }
 
+        // Populate the email field in the form
+        $request->merge(['email' => $user->email]);
         $changes = false; // Initialize the $changes variable as false
+
 
         if (
             $user->first_name !== $request->input('first_name') ||
             $user->last_name !== $request->input('last_name') ||
-            $user->email !== $request->input('email') ||
             $user->phone !== $request->input('phone') ||
             $user->address !== $request->input('address')
         ) {
@@ -263,7 +265,6 @@ class AdminController extends Controller
             $updatedData = [
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
-                'email' => $request->input('email'),
                 'phone' => $request->input('phone'),
                 'address' => $request->input('address'),
             ];

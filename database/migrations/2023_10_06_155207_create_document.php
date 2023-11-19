@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('document', function (Blueprint $table) {
             $table->id()->primary();
-            $table->unsignedBigInteger('report_id');
             $table->unsignedBigInteger('user_id');
 
             $table->string('birth_certificate')->nullable();
@@ -24,7 +23,6 @@ return new class extends Migration
             $table->timestamps();
 
             // Define foreign key constraints
-            $table->foreign('report_id')->references('id')->on('policereport');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
