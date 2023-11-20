@@ -72,3 +72,4 @@ Route::get('/get-user-details/{id}', [AdminController::class, 'getUserDetails'])
 
 Route::post('/save-documents', [HomeController::class, 'saveDocuments'])->name('save_documents');
 
+

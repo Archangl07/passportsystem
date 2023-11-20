@@ -6,6 +6,21 @@
 
     @include('admin.css')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    button.print-btn {
+      background-color: #3498db; /* Blue background color */
+      color: #fff; /* White text color */
+      border: none; /* No border */
+      padding: 10px 20px; /* Padding for better appearance */
+      text-align: center; /* Center text */
+      text-decoration: none; /* No underline */
+      display: inline-block; /* Display as inline block for better spacing */
+      font-size: 16px; /* Font size */
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Font family */
+      cursor: pointer; /* Add a pointer cursor on hover */
+      border-radius: 4px; /* Rounded corners for a modern look */
+    }
+  </style>
 </head>
 
 <body>
@@ -49,22 +64,22 @@
                             <!-- Add this in the <body> section of your HTML file -->
                             
                             <div id="monthlyTrendsChartDiv">
-                                <button id="trendChartPrint" class="bg-gray-700 text-gray-200 m-4">Print</button>
+                                <button id="trendChartPrint"  class="bg-gray-700 text-gray-200 m-4 print-btn">Print</button>
                                 <h4>Monthly Application Trends</h4>
                                 <canvas id="monthlyTrendsChart" width="400" height="200"></canvas>
                             </div>
                             <div style="margin-top: 40px;">
-                                <button id="statusDistributionChartPrint" class="bg-gray-700 text-gray-200 m-4">Print</button>
+                                <button id="statusDistributionChartPrint" class="bg-gray-700 text-gray-200 m-4 print-btn">Print</button>
                                 <h4>Application Status Distribution</h4>
                                 <canvas id="statusDistributionChart" width="800" height="200"></canvas>
                             </div>
                             <div style="margin-top: 40px;">
-                                <button id="rejChartPrint" class="bg-gray-700 text-gray-200 m-4">Print</button>
+                                <button id="rejChartPrint" class="bg-gray-700 text-gray-200 m-4 print-btn">Print</button>
                                 <h4>Reason For Rejection</h4>
                                 <canvas id="rejectionReasonsChart" width="800" height="200"></canvas>
                             </div>
                             <div style="margin-top: 40px;">
-                                <button id="ageChartPrint" class="bg-gray-700 text-gray-200 m-4">Print</button>
+                                <button id="ageChartPrint" class="bg-gray-700 text-gray-200 m-4 print-btn   ">Print</button>
                                 <h4>Applicants Age Distribution</h4>
                                 <canvas id="ageDistributionChart" width="800" height="200"
                                     style="margin-top:50px"></canvas>
@@ -191,13 +206,17 @@
     });
 
     // Age distribution chart
+    applicantCounts = [myData['ages'].filter(el=> el <= 10 ).length, myData['ages'].filter(el=> (el <= 20 && el > 10) ).length,
+    myData['ages'].filter(el=> (el <= 30 && el > 20) ).length, myData['ages'].filter(el=> (el <= 40 && el > 30) ).length,
+    myData['ages'].filter(el=> (el <= 50 && el > 40) ).length, myData['ages'].filter(el=> (el > 50) ).length];
 
+    console.log(applicantCounts);
     // Mock data for demonstration purposes
     var ageData = {
         labels: ['0-10', '11-20', '21-30', '31-40', '41-50', '51+'],
         datasets: [{
             label: 'Number of Applicants',
-            data: myData['ages'], //[20, 50, 15, 25, 15, 10], // Adjust data based on your actual age distribution
+            data: applicantCounts, //[20, 50, 15, 25, 15, 10], // Adjust data based on your actual age distribution
             backgroundColor: 'rgba(75, 192, 192, 0.6)'
         }]
     };
