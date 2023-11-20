@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 use App\Models\Appointment;
+use App\Models\Application;
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Carbon;
 
 class AdminController extends Controller
 {
@@ -97,9 +101,9 @@ class AdminController extends Controller
         $data = appointment::find($id);
 
         // Check if the appointment is not already approved
-        if ($data->status != 'Approved') {
+        if ($data->status != 'approved') {
             // Update the status to 'Approved'
-            $data->status = 'Approved';
+            $data->status = 'approved';
             $data->save();
 
             // Send an email to the user regarding the approved appointment
@@ -115,9 +119,9 @@ class AdminController extends Controller
     {
         $data=appointment::find($id);
 
-        if($data->status != 'cancelled') {
+        if($data->status != 'rejected') {
             
-            $data->status = 'cancelled';
+            $data->status = 'rejected';
             $data->save();
 
             return redirect()->back()->with('success', 'Appointment cancelled successfully');
@@ -281,7 +285,60 @@ class AdminController extends Controller
     }
         
 
+     
+    public function showcharts()
+    {
+        if(Auth::id())
 
+        {
+            if(Auth::user()->usertype==1)
+            {
+
+                    // Get the first and last day of the current month
+                $firstDayOfThisMonth = Carbon::now()->startOfMonth();
+                $lastDayOfThisMonth = Carbon::now()->endOfMonth();
+
+                // Query applicants with birth dates within the current month
+                $applicants = Application::get(['dateofbirth']); // Only retrieve the 'dateofbirth' field
+
+                error_log($applicants);
+                // Calculate ages based on birth dates
+                $ages = $applicants->map(function ($applicant) {
+
+                    error_log(Carbon::parse($applicant->dateofbirth)->age);
+                    return Carbon::parse($applicant->dateofbirth)->age;
+                });
+
+                $applicationCountByStatus = Application::select('status', DB::raw('count(*) as count'))
+                ->groupBy('status')
+                ->get();
+
+                $monthlyApplicationTrends = Application::selectRaw('YEAR(application_date) as year, MONTH(application_date) as month, COUNT(*) as count')
+                ->groupBy('year', 'month')
+                ->orderBy('year', 'desc')
+                ->orderBy('month', 'desc')
+                ->get();
+
+                $data=[
+                    'applicants' => $applicants,
+                    'ages' => $ages,
+                    'applicationCountByStatus' => $applicationCountByStatus,
+                    'monthlyApplicationTrends' => $monthlyApplicationTrends
+                ];
+
+                return view('admin.charts',compact('data'));
+            }
+
+            else
+            {
+                return redirect()->back();
+            }
+        }
+        else
+        {
+            return redirect('login');
+        }
+    }
 
             
         

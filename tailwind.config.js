@@ -19,5 +19,15 @@ export default {
         },
     },
 
+   
+    variants: {
+        extend: {
+        backgroundColor: ['hover'],
+        // Add other styles you want to enable for hover
+        },
+    },
+    // ...
+      
+
     plugins: [forms, typography],
 };

@@ -6,7 +6,7 @@
   @include('admin.css')
    
 
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
 
   </head>
   <body>

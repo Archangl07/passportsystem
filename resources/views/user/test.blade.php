@@ -180,6 +180,18 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
 
+
+
+
+
+
+<!-- myapplication.blade -->
+
+
+
+
+<!-- myapplication.blade -->
+
     <script>
       $(document).ready(function () {
         $('.alert button.close').on('click', function () {
@@ -195,3 +207,11 @@
     
   </body>
 </html>
+
+
+
+
+
+
+
+

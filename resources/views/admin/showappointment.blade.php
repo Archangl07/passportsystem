@@ -102,7 +102,7 @@
                         <td class="px-6 py-4">
                             <a href="{{url('approved',$appoint->id)}}" 
                             class="font-medium text-green-600  hover:underline mr-2">Approve</a>
-                            <a href="{{url('cancelled',$appoint->id)}}" onclick="return confirm('Are you sure you want to cancel the appointment?')" 
+                            <a href="{{url('rejected',$appoint->id)}}" onclick="return confirm('Are you sure you want to cancel the appointment?')" 
                             class="font-medium text-red-600  hover:underline">Cancel</a>
                         
                         </td>

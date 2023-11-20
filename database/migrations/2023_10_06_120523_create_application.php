@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('application', function (Blueprint $table) {
-            $table->id()->primary(); // Auto-incremental primary key
+            $table->id(); // Auto-incremental primary key
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('document_id');
             
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('nmrp_no');
             $table->string('nic_no', 12)->unique();
             $table->string('district');
-            $table->string('dateofbirth');
+            $table->date('dateofbirth');
             $table->string('bc_number');
             $table->string('bc_district');
             $table->string('birth_place');

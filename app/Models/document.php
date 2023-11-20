@@ -9,9 +9,10 @@ class document extends Model
 {
     use HasFactory;
 
+    protected $table = 'document'; 
+
     protected $fillable = [
 
-        'report_id',
         'user_id',
         'birth_certificate',
         'NIC',
@@ -28,10 +29,6 @@ class document extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function report()
-    {
-        return $this->belongsTo();
-    }
 
 
 }
