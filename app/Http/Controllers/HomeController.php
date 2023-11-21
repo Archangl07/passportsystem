@@ -205,8 +205,10 @@ class HomeController extends Controller
         if (auth()->check()){
 
             $user = Auth::user();
+            $applications = application::where('user_id', $user->id)->get();
             
-            return view('user.myapplication',compact('user'));
+            
+            return view('user.myapplication',compact('user', 'applications'));
         }
         else{
 
@@ -244,7 +246,7 @@ class HomeController extends Controller
         ]);
 
 
-        error_log('----Validate panniyachi-----');
+        error_log('----Validate check-----');
 
         // Check if the user is authenticated
     if (auth()->check()) {
@@ -345,5 +347,15 @@ class HomeController extends Controller
         return redirect()->route('dashboard')->with('success', 'Your documents have been saved successfully.');
     }
 
+    public function trackPassport()
+    {
+        // Retrieve the currently authenticated user
+        $user = auth()->user();
 
+        $status = 'submitted';
+        $trackingNumber = '32';
+
+        return view('user.tracking', compact(['status','trackingNumber']));
+
+    }
 }

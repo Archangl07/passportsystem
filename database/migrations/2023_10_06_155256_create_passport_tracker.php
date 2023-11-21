@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('passport_tracker', function (Blueprint $table) {
             $table->id()->primary();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('application_id');
 
-            $table->string('estdelivery');
+            $table->date('estdelivery');
             $table->string('status');
             $table->string('location');
 
             $table->timestamps();
             //foreign key
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('application_id')->references('id')->on('application');
 
         });
     }

@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="../assets/vendor/animate/animate.css">
 
   <link rel="stylesheet" href="../assets/css/theme.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-AvP9dhK2rL9OWlRc7ShK5QxUk56NI6bY/kGEX8peN4Cz9tW8+Xnu8GbeTpJpO8CtwgfHWNrNem2OLbZFY+r6Ow==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
     .page-hero.bg-image {

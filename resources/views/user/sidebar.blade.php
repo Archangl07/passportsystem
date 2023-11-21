@@ -38,7 +38,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/charts/chartjs.html">
+              <a class="nav-link" href="/track-passport">
                 <span class="menu-title">Passport Status</span>
                 <i class="mdi mdi-chart-bar menu-icon"></i>
               </a>

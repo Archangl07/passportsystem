@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('delivery_address');
             $table->string('recepient_name');
             $table->string('delivery_date');
+            $table->string('status');
 
             $table->timestamps();
 

@@ -305,52 +305,62 @@
                           </div>
 
                           <div class="tab-pane fade mb-4" id="view-status" role="tabpanel" aria-labelledby="view-statuses-tab">
-                                  <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
-                                      <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
-                                          <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
-                                              <tr>
-                                                  <th scope="col" class="px-6 py-3">
-                                                      user_id
-                                                  </th>
-                                                  <th scope="col" class="px-6 py-3">
-                                                      Application No
-                                                  </th>
-                                                  <th scope="col" class="px-6 py-3">
-                                                      Date
-                                                  </th>
-                                                  <th scope="col" class="px-6 py-3">
-                                                      Status
-                                                  </th>
-                                                  <th scope="col" class="px-6 py-3">
-                                                      Action
-                                                  </th>
-                                              </tr>
-                                          </thead>
+                                      <div class="card">
+                                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
+                                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+                                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                                                    <tr>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Application No
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Service Type
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Date
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            Status
+                                                        </th>
+                                                        <th scope="col" class="px-6 py-3">
+                                                            
+                                                        </th>
+                                                    </tr>
+                                                </thead>
 
-                                          
-                                          <tbody>
-                                              <tr class="odd:bg-white  even:bg-gray-50  border-b ">
-                                              <td class="px-6 py-4">
-                                                     
-                                                  </td>
-                                                  <td class="px-6 py-4">
-                                                      
-                                                  </td>
-                                                  <td class="px-6 py-4">
-                                                     
-                                                  </td>
-                                                  <td class="px-6 py-4">
-                                                      
-                                                  </td>
-                                                  <td class="px-6 py-4">
-                                                      <a href="" onclick="return confirm('Are you sure you want to cancel appointment?')" 
-                                                      class="font-medium text-red-600  hover:underline">Cancel</a>
-                                                  </td>
-                                              </tr>
-                                          </tbody>
-                                         
-                                      </table>
-                                  </div>
+                                                
+                                                <tbody>
+                                                  @foreach($applications as $application)
+                                                    <tr class="odd:bg-white  even:bg-gray-50  border-b ">
+                                                    <td class="px-6 py-4">
+                                                    {{ $application->application_no }}
+                                                        </td>
+                                                        <td class="px-6 py-4">
+                                                        {{ $application->service_type }}
+                                                            
+                                                        </td>
+                                                        <td class="px-6 py-4">
+                                                        {{ $application->application_date }}
+                                                        </td>
+                                                        <td class="px-6 py-4">
+                                                        {{ $application->status }}
+                                                            
+                                                        </td>
+                                                        <td class="px-6 py-4">
+                                                        @if($application->status == 'approved')
+                                                            <a href="" class="font-medium text-red-600  hover:underline">Pay Now</a>
+                                                        @else
+                                                            <span class="font-medium text-red-600">Pay Now</span>
+                                                        @endif
+                                                          
+                                                        </td>
+                                                    </tr>
+                                                  @endforeach  
+                                                </tbody>
+                                              
+                                            </table>
+                                        </div>
+                                      </div>
 
                           </div>
 

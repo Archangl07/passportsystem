@@ -44,73 +44,83 @@
         <!-- messagebox condition end -->
 
         <!-- table -->
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Email
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Phone
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Branch
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Date
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Message
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
+            <div class="card">
+                    <div class="card-header flex items-center justify-center"><strong>All appointment requests</strong></div>
+                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">
+                                            Name
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Email
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Phone
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Branch
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Date
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Status
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Action
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            
+                                        </th>
+                                    </tr>
+                                </thead>
 
-                @foreach($data as $appoint)
-                <tbody>
-                    <tr class="odd:bg-black  even:bg-gray-50  border-b ">
-                    <td class="px-6 py-4">
-                            {{$appoint->name}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$appoint->email}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$appoint->phone}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$appoint->branch}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$appoint->date}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$appoint->message}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$appoint->status}}
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="{{url('approved',$appoint->id)}}" 
-                            class="font-medium text-green-600  hover:underline mr-2">Approve</a>
-                            <a href="{{url('rejected',$appoint->id)}}" onclick="return confirm('Are you sure you want to cancel the appointment?')" 
-                            class="font-medium text-red-600  hover:underline">Cancel</a>
-                        
-                        </td>
-                    </tr>
-                </tbody>
-                @endforeach
-            </table>
-        </div> <!-- table -->
+                                @foreach($data as $appoint)
+                                <tbody>
+                                    <tr class="odd:bg-black  even:bg-gray-50  border-b ">
+                                    <td class="px-6 py-4">
+                                            {{$appoint->name}}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{$appoint->email}}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{$appoint->phone}}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{$appoint->branch}}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{$appoint->date}}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{$appoint->status}}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            @if($appoint->status == 'inprogress')
+                                                <a href="{{url('approved',$appoint->id)}}"     
+                                                class="font-medium text-green-600  hover:underline mr-2">Approve</a>
+                                            @else
+                                            <span class="font-medium text-red-600">Approve</span>
+                                            @endif    
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            @if($appoint->status == 'inprogress')
+                                            <a href="{{url('rejected',$appoint->id)}}" onclick="return confirm('Are you sure you want to cancel the appointment?')" 
+                                            class="font-medium text-red-600  hover:underline">Cancel</a>
+                                            @else
+                                            <span class="font-medium text-red-600">Cancel</span>
+                                            @endif                   
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                @endforeach
+                            </table>
+                        </div> <!-- table -->
+                    </div>
+            </div>
 
 
 

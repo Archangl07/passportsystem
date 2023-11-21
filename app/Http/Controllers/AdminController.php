@@ -5,6 +5,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AppointmentApproved;
+use App\Mail\ApplicationApproved;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,6 +13,7 @@ use App\Models\User;
 
 use App\Models\Appointment;
 use App\Models\Application;
+use App\Models\Document;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Carbon;
@@ -340,11 +342,131 @@ class AdminController extends Controller
         }
     }
 
+
+    public function verification()
+    {
+        if (Auth::id())
+        {
+            if(Auth::user()->usertype==1)
+            {
+                $data=application::all();
+                return view('admin.verification')->with('data', $data);
+            }
+            else
+            {
+                return redirect()->back();
+            }
+        }
+        else 
+        {
+            return redirect('login');
+        }
+    }
+
             
         
+    public function detailApplication($id)
+    {
+        if(Auth::check()){
+       
+            $application = Application::find($id);
+
+            if($application){
+
+                $doc = Document::find($application->document_id);
+                $user = User::find($application->user_id);
+                $data = [
+                    'application' => $application,
+                    'document' => $doc,
+                    'applicant' => $user
+                ];
+    
+                return view('admin.application_detail',compact('data'));
+            }
+            return redirect('verification')->with('error','Application is not found');
+        }
+
+        return redirect('login');
+        
+    }
+
+
+    public function updateApplicationStatus(Request $request, $id)
+    {
+        // Retrieve the application from the database
+        $application = Application::findOrFail($id);
+        $applicant = User::findOrFail($application->user_id);
+        // Check which button was pressed
+        $action = $request->input('action');
+
+        // Update the application data based on the button pressed
+        if ($action === 'approve') {
+            $application->status = 'approved';
+            $applicant->status = 1;
+        } elseif ($action === 'reject') {
+            $application->status = 'rejected';
+            $applicant->status = 0;
+        }
+
+        // Save the changes
+        $application->save();
+
+        $applicant->app_no = $application->application_no;
+
+        error_log($applicant);
+
+        // You can add more logic based on your requirements
+        Mail::to($applicant->email)->send(new ApplicationApproved($applicant));
+
+        if ($action === 'approve') {
+            return back()->with('success', 'Application Approved successfully!');
+        }
+        else{
+            return redirect('verification')->with('success', 'Application updated successfully!');
+        }
+        
+    }
+
+    public function setPassportstatus(Request $request, $id)
+    {
+        if (Auth::id())
+        {
+            if(Auth::user()->usertype==1)
+            {
+
+                $application=application::find($id);
+
+                $user = User::findOrFail($application->user_id);
+
+                // $existingTracker = PassportTracker::where('application_id',$application->id)->first();
+
+                // if($existingTracker){
+                //     $existingTracker->$request->input('status');
+                //     $existingTracker->save();
+                // }
+                // else{
+                //         $passportTrack = new PassportTracker;
+                //         $passportTrack->application_id = $application->id;
+                //         $passportTrack->status = $request->input('status');
+                //         $passportTrack->location =  $user->address;
+
+                //         $passportTrack->save();
+                // }
 
 
 
+                return back()->with('success', 'Application updated successfully!');
+            }
+            else
+            {
+                return redirect()->back();
+            }
+        }
+        else 
+        {
+            return redirect('login');
+        }
+    }
 
 
 }

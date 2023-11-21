@@ -6,20 +6,20 @@
           <div class="card-blog">
             <div class="header">
               <div class="post-category">
-                <a href="#">Covid19</a>
+                <a href="#">New Fees</a>
               </div>
               <a href="blog-details.html" class="post-thumb">
-                <img src="../assets/img/blog/blog_1.jpg" alt="">
+                <img src="../assets/img/blog/blog1.jpg" alt="">
               </a>
             </div>
             <div class="body">
-              <h5 class="post-title"><a href="blog-details.html">List of Countries without Coronavirus case</a></h5>
+              <h5 class="post-title"><a href="blog-details.html">Government has raised the application fees</a></h5>
               <div class="site-info">
                 <div class="avatar mr-2">
                   <div class="avatar-img">
                     <img src="../assets/img/person/person_1.jpg" alt="">
                   </div>
-                  <span>Roger Adams</span>
+                  <span>Tom savyer</span>
                 </div>
                 <span class="mai-time"></span> 1 week ago
               </div>
@@ -30,22 +30,22 @@
           <div class="card-blog">
             <div class="header">
               <div class="post-category">
-                <a href="#">Covid19</a>
+                <a href="#">Regional</a>
               </div>
               <a href="blog-details.html" class="post-thumb">
-                <img src="../assets/img/blog/blog_2.jpg" alt="">
+                <img src="../assets/img/blog/blog2.jpg" alt="">
               </a>
             </div>
             <div class="body">
-              <h5 class="post-title"><a href="blog-details.html">Recovery Room: News beyond the pandemic</a></h5>
+              <h5 class="post-title"><a href="blog-details.html">Regional passport offices in need</a></h5>
               <div class="site-info">
                 <div class="avatar mr-2">
                   <div class="avatar-img">
                     <img src="../assets/img/person/person_1.jpg" alt="">
                   </div>
-                  <span>Roger Adams</span>
+                  <span>Thisara perera</span>
                 </div>
-                <span class="mai-time"></span> 4 weeks ago
+                <span class="mai-time"></span> 3 weeks ago
               </div>
             </div>
           </div>
@@ -54,14 +54,14 @@
           <div class="card-blog">
             <div class="header">
               <div class="post-category">
-                <a href="#">Covid19</a>
+                <a href="#">Living abroad</a>
               </div>
               <a href="blog-details.html" class="post-thumb">
-                <img src="../assets/img/blog/blog_3.jpg" alt="">
+                <img src="../assets/img/blog/blog3.jpg" alt="">
               </a>
             </div>
             <div class="body">
-              <h5 class="post-title"><a href="blog-details.html">What is the impact of eating too much sugar?</a></h5>
+              <h5 class="post-title"><a href="blog-details.html">Srilankans living abroad can apply</a></h5>
               <div class="site-info">
                 <div class="avatar mr-2">
                   <div class="avatar-img">
@@ -76,7 +76,7 @@
         </div>
 
         <div class="col-12 text-center mt-4 wow zoomIn">
-          <a href="blog.html" class="btn btn-primary">Read More</a>
+          <a href="https://shorturl.at/cCNX3" target="_blank" class="btn btn-primary">Read More</a>
         </div>
 
       </div>

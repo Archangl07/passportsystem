@@ -9,6 +9,9 @@ use App\Http\Controllers\AdminController;
 
 use Illuminate\Support\Facades\Log;
 
+use App\Models\Application;
+use App\Models\document;
+
 //Indexpage route
 Route::get('/', [HomeController::class,'index']);
 
@@ -72,4 +75,11 @@ Route::get('/get-user-details/{id}', [AdminController::class, 'getUserDetails'])
 
 Route::post('/save-documents', [HomeController::class, 'saveDocuments'])->name('save_documents');
 
+Route::get('/verification', [AdminController::class, 'verification'])->name('verification_page');
 
+Route::get('/detail-application/{id}', [AdminController::class, 'detailApplication'])->name('detail_application')->middleware(['auth']);
+
+Route::post('/update-application-status/{id}', [AdminController::class, 'updateApplicationStatus'])->name('update_application_status');
+
+
+Route::get('/track-passport', [HomeController::class, 'trackPassport'])->name('trackpass_page');

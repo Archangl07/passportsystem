@@ -1145,15 +1145,6 @@ select {
 .col-span-6 {
   grid-column: span 6 / span 6;
 }
-.float-right {
-  float: right;
-}
-.float-left {
-  float: left;
-}
-.float-none {
-  float: none;
-}
 .m-0 {
   margin: 0px;
 }
@@ -1219,9 +1210,6 @@ select {
 }
 .me-3 {
   margin-inline-end: 0.75rem;
-}
-.me-4 {
-  margin-inline-end: 1rem;
 }
 .me-auto {
   margin-inline-end: auto;
@@ -1528,6 +1516,9 @@ select {
 .self-center {
   align-self: center;
 }
+.overflow-auto {
+  overflow: auto;
+}
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1636,6 +1627,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
@@ -1655,6 +1650,10 @@ select {
 .bg-red-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+.bg-red-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
 .bg-red-50 {
   --tw-bg-opacity: 1;
@@ -1819,20 +1818,11 @@ select {
 .pb-4 {
   padding-bottom: 1rem;
 }
-.pe-1 {
-  padding-inline-end: 0.25rem;
-}
 .pl-3 {
   padding-left: 0.75rem;
 }
 .pr-4 {
   padding-right: 1rem;
-}
-.ps-1 {
-  padding-inline-start: 0.25rem;
-}
-.ps-2 {
-  padding-inline-start: 0.5rem;
 }
 .pt-1 {
   padding-top: 0.25rem;
@@ -1860,9 +1850,6 @@ select {
 }
 .text-right {
   text-align: right;
-}
-.align-middle {
-  vertical-align: middle;
 }
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -2073,6 +2060,9 @@ select {
 }
 .ring-opacity-5 {
   --tw-ring-opacity: 0.05;
+}
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
