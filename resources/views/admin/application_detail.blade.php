@@ -637,8 +637,38 @@
 
                         <!-- Set Passport status -->
                         <div>
-                            <!-- Select element name status -->
-                            <!-- submit -->
+                        <form class="main-form" action="{{ route('set_passport_status', ['id' => $data['application']->id]) }}" method="POST">
+                                
+                                        @csrf
+                                        <div class="row mt-5 ">
+
+                                        <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                                            <label>Estimated delivery</label>
+                                            <input type="Date" style="color:black; background-color:white;" class="form-control" name="estdelivery" placeholder="estimated date" required class="rounded-lg form-input">
+                                        </div>
+                                        
+                                        <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
+                                            <select name="status" id="status" class="form-control rounded-lg form-input" required>
+
+                                            <option>---Select Status---</option>
+
+                                            <option value="submitted">Submitted</option>
+                                            <option value="processing">Processing</option>
+                                            <option value="completed">Completed</option>
+                                            <option value="issued">Issued</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+                                            <label>Location</label>
+                                            <input type="text" style="color:black; background-color:white;" class="form-control" name="address" value="{{$data['application']->user->address}}" placeholder="user address" required class="rounded-lg form-input" readonly>
+                                        </div>
+
+                                        <div>
+                                            <button type="submit" class="btn btn-success wow zoomIn" style="color: white;">Update</button>
+                                        </div>
+                                        </div>
+                                    </form>
                         </div>
                         <!-- Set Passport status -->
                     </div>

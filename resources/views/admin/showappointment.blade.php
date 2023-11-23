@@ -108,7 +108,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             @if($appoint->status == 'inprogress')
-                                            <a href="{{url('rejected',$appoint->id)}}" onclick="return confirm('Are you sure you want to cancel the appointment?')" 
+                                            <a href="{{url('cancelled',$appoint->id)}}" onclick="return confirm('Are you sure you want to cancel the appointment?')" 
                                             class="font-medium text-red-600  hover:underline">Cancel</a>
                                             @else
                                             <span class="font-medium text-red-600">Cancel</span>

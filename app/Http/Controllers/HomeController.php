@@ -20,6 +20,8 @@ use Illuminate\Support\Carbon;
 
 use App\Models\Document; 
 
+use App\Models\Passporttracker;
+
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
 
@@ -220,7 +222,6 @@ class HomeController extends Controller
 
     public function myapplication(Request $request)
     {
-        error_log('----Validate panna paakra-----');
 
        
         $validated = $request->validate([
@@ -246,7 +247,6 @@ class HomeController extends Controller
         ]);
 
 
-        error_log('----Validate check-----');
 
         // Check if the user is authenticated
     if (auth()->check()) {
@@ -263,7 +263,7 @@ class HomeController extends Controller
             $document = Document::where('user_id', auth()->id())->first();
     
             if (!$document) {
-                error_log('----Document ulluku ira-----');
+                error_log('----Document inside-----');
                 return redirect()->back()->with('error', 'Document Required');
             }
     
@@ -300,7 +300,7 @@ class HomeController extends Controller
         return redirect()->back()->with('success', 'Application submitted successfully.');
 
         }
-        error_log('Login ahi illa');
+  
         // Handle the case where the user is not authenticated
         return redirect()->back()->with('error', 'User not authenticated.');
     }
@@ -310,8 +310,8 @@ class HomeController extends Controller
     {
 
         $user = auth()->user();
-
         $requestData = $request->all();
+        
         $fileName = time().$request->file('birth_certificate')->getClientOriginalName();
         $path = $request->file('birth_certificate')->storeAs('images', $fileName, 'public');
         $requestData["birth_certificate"] = '/storage/'.$path;
@@ -347,15 +347,33 @@ class HomeController extends Controller
         return redirect()->route('dashboard')->with('success', 'Your documents have been saved successfully.');
     }
 
+
+    
     public function trackPassport()
     {
-        // Retrieve the currently authenticated user
-        $user = auth()->user();
+            // Retrieve the currently authenticated user
+            $user = Auth::user();
 
-        $status = 'submitted';
-        $trackingNumber = '32';
+            // Retrieve the status and id from the database
+            $application = Application::where('user_id', $user->id)->first();
 
-        return view('user.tracking', compact(['status','trackingNumber']));
-
+            if ($application) {
+                // Retrieve the status and id from the database
+                $passportTracker = Passporttracker::where('application_id', $application->id)->first();
+                if ($passportTracker) {
+                    $status = $passportTracker->status;
+                    $trackingNumber = $passportTracker->id;
+        
+                    return view('user.tracking', compact(['status','trackingNumber']));
+        
+            } else {
+                return redirect()->back()->with('error', 'No tracking information found');
+            }
+        } else {
+            return redirect()->back()->with('error', 'No application found');
+        }
     }
-}
+
+
+
+}    

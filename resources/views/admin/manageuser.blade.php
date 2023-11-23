@@ -158,7 +158,7 @@
 
                                         <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
                                             <label>Address</label>
-                                            <textarea name="address" id="address" class="form-control" rows="5" placeholder="Type your Address.." required class="rounded-lg form-input"></textarea>
+                                            <textarea name="address" id="address"  style="color:white;" class="form-control" rows="5" placeholder="Type your Address.." required class="rounded-lg form-input"></textarea>
                                         </div>
 
                                         <div>

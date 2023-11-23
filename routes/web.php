@@ -81,5 +81,6 @@ Route::get('/detail-application/{id}', [AdminController::class, 'detailApplicati
 
 Route::post('/update-application-status/{id}', [AdminController::class, 'updateApplicationStatus'])->name('update_application_status');
 
+Route::post('/set-passport-status/{id}', [AdminController::class, 'setPassportstatus'])->name('set_passport_status');
 
 Route::get('/track-passport', [HomeController::class, 'trackPassport'])->name('trackpass_page');

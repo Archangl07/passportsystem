@@ -9,28 +9,40 @@
     @include('user.css')
 
 <!-- Add this to your HTML head to include FontAwesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
     .status-list {
+        font-size: 24px; /* Adjust the size as needed */
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         list-style: none;
-        padding: 0;
+        padding: 5;
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .status-list li {
+        color: grey;
         margin: 0 10px;
         cursor: pointer;
     }
 
     .status-list li i {
-        margin-right: 5px;
+        margin-right: 20;
     }
 
     .status-list li.active {
         color: #007bff; /* Change the color as needed */
         font-weight: bold;
+
+    /* CSS for smaller screens */
+    @media (max-width: 600px) {
+    .status-list {
+        flex-direction: column; /* Stack the list items vertically */
     }
+    }
+}
 </style>
   </head>
   <body>
@@ -61,27 +73,45 @@
                                             <!-- Start Div -->
 
                                             <div>
-                                                <h1>Postal Tracking</h1>
+                                                
                                                 <ul class="status-list">
                                                     <li class="{{ $status === 'submitted' ? 'active' : '' }}">
-                                                    <i class="fa-regular fa-file"></i>
+                                                    <i class="far fa-file"></i>
                                                         <div>
                                                             Submitted
                                                         </div>
                                                     </li>
                                                     <li class="{{ $status === 'processing' ? 'active' : '' }}">
-                                                        <i class="fas fa-sync-alt"></i> Processing
+                                                        <i class="fas fa-sync-alt"></i> 
+                                                        <div>
+                                                            Processing
+                                                        </div>
                                                     </li>
                                                     <li class="{{ $status === 'completed' ? 'active' : '' }}">
-                                                        <i class="fas fa-check-circle"></i> Completed
+                                                        <i class="fas fa-check-circle"></i> 
+                                                        <div>
+                                                            Completed
+                                                        </div>
                                                     </li>
                                                     <li class="{{ $status === 'issued' ? 'active' : '' }}">
-                                                        <i class="fas fa-flag"></i> Issued
+                                                        <i class="fas fa-flag"></i> 
+                                                        <div>
+                                                            Issued
+                                                        </div>
                                                     </li>
+                                                    
                                                 </ul>
-                                            </div>
+                                            </div ><br>
+                                            <p style="text-align: center;">1. Submitted -> Administrator has approved the application, forwarded to immigration 
+                                                        department <br>
+                                                        2. Processing -> The materials is being prepared and have reached 1st stage <br>
+                                                        3. Completed -> The passport has been printed <br>
+                                                        4. Issued -> The passport is destributed to the delivery company
+
+                                                    </p>
                                             <!-- End Div -->
                                           </div>
+                                          
                                           
                                     </div>
                               </div>

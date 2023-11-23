@@ -14,12 +14,16 @@ use App\Models\User;
 use App\Models\Appointment;
 use App\Models\Application;
 use App\Models\Document;
+use App\Models\Passporttracker;
+
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Carbon;
 
 class AdminController extends Controller
 {
+
+
     public function addview()
     {
         if(Auth::id())
@@ -438,20 +442,21 @@ class AdminController extends Controller
 
                 $user = User::findOrFail($application->user_id);
 
-                // $existingTracker = PassportTracker::where('application_id',$application->id)->first();
+                $existingTracker = Passporttracker::where('application_id',$application->id)->first();
 
-                // if($existingTracker){
-                //     $existingTracker->$request->input('status');
-                //     $existingTracker->save();
-                // }
-                // else{
-                //         $passportTrack = new PassportTracker;
-                //         $passportTrack->application_id = $application->id;
-                //         $passportTrack->status = $request->input('status');
-                //         $passportTrack->location =  $user->address;
+                if($existingTracker){
+                    $existingTracker->status = $request->input('status');
+                    $existingTracker->save();
+                }
+                else{
+                        $passportTrack = new Passporttracker;
+                        $passportTrack->application_id = $application->id;
+                        $passportTrack->status = $request->input('status');
+                        $passportTrack->location =  $user->address;
+                        $passportTrack->estdelivery = $request->input('estdelivery'); 
 
-                //         $passportTrack->save();
-                // }
+                        $passportTrack->save();
+                }
 
 
 

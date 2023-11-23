@@ -35,25 +35,7 @@
           
               <div class="page-section">
                 
-                        <!-- messagebox condition -->
-                        @if(session()->has('success'))
-                          <div class="alert alert-success">
-                              <button type="button" class="close" data-dismiss="alert">
-                              x
-                              </button>
-                              {{ session()->get('success') }}
-                          </div>
-                          @endif
-
-                          @if(session()->has('error'))
-                          <div class="alert alert-danger">
-                              <button type="button" class="close" data-dismiss="alert">
-                              x
-                              </button>
-                              {{ session()->get('error') }}
-                          </div>
-                          @endif 
-                        <!-- messagebox condition end -->
+                        
 
                   <div class="container">
 
@@ -78,46 +60,83 @@
                                 <div class="card">
                                     <div class="card-header flex items-center justify-center"><strong>Submit the Documents</strong></div>
                                     <div class="card-body">
+                                      <!-- messagebox condition -->
+                                          @if(session()->has('success'))
+                                            <div class="alert alert-success">
+                                                <button type="button" class="close" data-dismiss="alert">
+                                                x
+                                                </button>
+                                                {{ session()->get('success') }}
+                                            </div>
+                                            @endif
 
-                                        <form action="{{ route('save_documents')}}" method="post" enctype="multipart/form-data">
+                                            @if(session()->has('error'))
+                                            <div class="alert alert-danger">
+                                                <button type="button" class="close" data-dismiss="alert">
+                                                x
+                                                </button>
+                                                {{ session()->get('error') }}
+                                            </div>
+                                            @endif 
+                                          <!-- messagebox condition end -->
+
+                                        <form action="{{ route('save_documents')}}" method="post" enctype="multipart/form-data" 
+                                        class="p-5 bg-white rounded shadow-sm">
                                           @csrf
-                                            <label>Birth Certificate</label><br>
-                                            <input class="form-control" name="birth_certificate" type="file" id="birth_certificate"><br>
-                                            <span id="birth_certificate_name"></span>
-                                            <!-- Get the document model for the current user -->
-                                              @php
-                                                $user = auth()->user();
-                                                $document = App\Models\document::where('user_id', $user->id)->first();
-                                              @endphp
-                                            <!-- Display the image from the document model -->
-                                            <img class="thumbnail" id="birth_certificate_image" src="{{ asset(optional($document)->birth_certificate) }}" alt="Birth certificate"><br>
 
-                                            <label>NIC copy</label><br>
-                                            <input class="form-control" name="NIC" type="file" id="NIC">
-                                            <span id="NIC_name"></span>
-                                            <!-- Display the image from the document model -->
-                                            <img class="thumbnail" id="NIC_image" src="{{ asset(optional($document)->NIC) }}" alt="NIC copy"><br>
+                                          <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <label>Birth Certificate</label><br>
+                                                <input class="form-control" name="birth_certificate" type="file" id="birth_certificate"><br>
+                                                <span id="birth_certificate_name"></span>
+                                                <!-- Get the document model for the current user -->
+                                                  @php
+                                                    $user = auth()->user();
+                                                    $document = App\Models\document::where('user_id', $user->id)->first();
+                                                  @endphp
+                                                <!-- Display the image from the document model -->
+                                                <img class="thumbnail mt-2" id="birth_certificate_image" src="{{ asset(optional($document)->birth_certificate) }}" alt="Birth certificate"><br>
+                                            </div>
 
-                                            <label>Medical Certificate</label><br>
-                                            <input class="form-control" name="Medical_certificate" type="file" id="Medical_certificate">
-                                            <span id="Medical_certificate_name"></span>
-                                            <!-- Display the image from the document model -->
-                                            <img class="thumbnail" id="Medical_certificate_image" src="{{ asset(optional($document)->Medical_certificate) }}" alt="Medical certificate"><br>
+                                            <div class="col-md-6 form-group">
+                                                <label>NIC copy</label><br>
+                                                <input class="form-control" name="NIC" type="file" id="NIC" required>
+                                                <span id="NIC_name"></span>
+                                                <!-- Display the image from the document model -->
+                                                <img class="thumbnail mt-2" id="NIC_image" src="{{ asset(optional($document)->NIC) }}" alt="NIC copy"><br>
+                                            </div>
 
-                                            <label>Finger print</label><br>
-                                            <input class="form-control" name="Fingerprint" type="file" id="Fingerprint">
-                                            <span id="Fingerprint_name"></span>
-                                            <!-- Display the image from the document model -->
-                                            <img class="thumbnail" id="Fingerprint_image" src="{{ asset(optional($document)->Fingerprint) }}" alt="Finger print"><br>
+                                            <div class="col-md-6 form-group">
+                                                <label>Medical Certificate</label><br>
+                                                <input class="form-control" name="Medical_certificate" type="file" id="Medical_certificate" required>
+                                                <span id="Medical_certificate_name"></span>
+                                                <!-- Display the image from the document model -->
+                                                <img class="thumbnail mt-2" id="Medical_certificate_image" src="{{ asset(optional($document)->Medical_certificate) }}" alt="Medical certificate"><br>
+                                            </div>
 
-                                            <label>Digital photo</label><br>
-                                            <input class="form-control" name="Digitalphoto" type="file" id="Digitalphoto">
-                                            <span id="Digitalphoto_name"></span>
-                                            <!-- Display the image from the document model -->
-                                            <img class="thumbnail" id="Digitalphoto_image" src="{{ asset(optional($document)->Digitalphoto) }}" alt="Digital photo"><br>
-                                            
+                                            <div class="col-md-6 form-group">
+                                                <label>Finger print</label><br>
+                                                <input class="form-control" name="Fingerprint" type="file" id="Fingerprint">
+                                                <span id="Fingerprint_name"></span>
+                                                <!-- Display the image from the document model -->
+                                                <img class="thumbnail mt-2" id="Fingerprint_image" src="{{ asset(optional($document)->Fingerprint) }}" alt="Finger print"><br>
+                                            </div>
 
-                                            <input type="submit" value="Save" class="btn btn-secondary">
+                                            <div class="col-md-6 form-group">
+                                                <label>Digital photo</label><br>
+                                                <input class="form-control" name="Digitalphoto" type="file" id="Digitalphoto">
+                                                <span id="Digitalphoto_name"></span>
+                                                <!-- Display the image from the document model -->
+                                                <img class="thumbnail mt-2" id="Digitalphoto_image" src="{{ asset(optional($document)->Digitalphoto) }}" alt="Digital photo"><br>
+                                            </div>  
+
+
+                                            <div class="col-12">
+                                            <button type="submit" class="btn" style="background-color: #333; color: #fff;">Save</button>
+                                            </div>
+
+
+                                          </div>    
                                         </form>
 
                                     </div>
@@ -200,7 +219,7 @@
 
                                               <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                                                   <label>NIC</label>
-                                                  <input type="text" name="nic_no" class="form-control" placeholder="nic number" required>
+                                                  <input type="text" name="nic_no" class="form-control" placeholder="nic number" maxlength="12" required>
                                               </div>
 
                                               <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
