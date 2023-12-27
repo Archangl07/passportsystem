@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('pay_option');
             $table->date('pay_date');
             $table->decimal('price');
+            $table->string('currency');
             $table->boolean('payment_completed')->default(0);
 
             $table->timestamps();
