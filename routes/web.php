@@ -21,6 +21,7 @@ Route::get('/test', function(){
 
 });
 
+
 Route::get('/home', [HomeController::class,'redirect'])->middleware('auth','verified');
 
 Route::middleware([
@@ -33,6 +34,16 @@ Route::middleware([
     //     return view('dashboard'); 
     // })->name('dashboard');
 });
+
+Route::get('/about', [HomeController::class, 'about'])->name('about.view');
+
+Route::get('/services', [HomeController::class, 'services'])->name('services.view');
+
+Route::get('/home', [HomeController::class, 'publichome'])->name('home.view');
+
+Route::get('/contactus', [HomeController::class, 'contact'])->name('contact.view');
+
+Route::post('/contact', [HomeController::class, 'sendContactForm'])->name('contact.submit');
 
 Route::get('/add_user_view', [AdminController::class,'addview']);
 
@@ -84,3 +95,7 @@ Route::post('/update-application-status/{id}', [AdminController::class, 'updateA
 Route::post('/set-passport-status/{id}', [AdminController::class, 'setPassportstatus'])->name('set_passport_status');
 
 Route::get('/track-passport', [HomeController::class, 'trackPassport'])->name('trackpass_page');
+
+Route::post('pay', [PaymentController::class, 'pay'])->name('payment');
+
+Route::get('success', [PaymentController::class, 'error']);

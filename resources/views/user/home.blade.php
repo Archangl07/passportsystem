@@ -6,8 +6,6 @@
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <meta name="copyright" content="MACode ID, https://macodeid.com/">
-
   <title>Passportease - Home</title>
 
   <link rel="stylesheet" href="../assets/css/maicons.css">
@@ -79,7 +77,7 @@
           <div class="site-info">
             <a href="#"><span class="mai-call text-primary"></span> +94 777777888</a>
             <span class="divider">|</span>
-            <a href="#"><span class="mai-mail text-primary"></span> mail@passportease.com</a>
+            <a href="https://mail.google.com/" target="_blank"><span class="mai-mail text-primary"></span> mail@passportease.com</a>
           </div>
         </div>
         <div class="col-sm-8 text-right text-sm">
@@ -117,19 +115,16 @@
           <ul class="navbar-nav ml-auto">
         
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="{{('home') }}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
+              <a class="nav-link" href="{{('about') }}">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="doctors.html">Services</a>
+              <a class="nav-link" href="{{('services') }}">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="blog.html">News</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="{{('contactus') }}">Contact</a>
             </li>
 
             @if(Route::has('login'))
@@ -231,7 +226,8 @@
           </div>
         </div>
       </div>
-    </div> <!-- .page-section -->
+    </div> 
+    <!-- .page-section -->
 
     <div class="page-section pb-0">
       <div class="container">

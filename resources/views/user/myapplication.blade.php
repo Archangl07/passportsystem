@@ -201,7 +201,7 @@
                                                       
                                                   </select>
                                               </div>
-
+                                              
                                               <div class="col-12 col-sm-6 py-2 wow fadeInUp" data-wow-delay="300ms">
                                                 <label>Travel Document Type</label>
                                                 <input type="text" name="traveldocument_type" class="form-control" placeholder="traveldocument type">
@@ -367,7 +367,11 @@
                                                         </td>
                                                         <td class="px-6 py-4">
                                                         @if($application->status == 'approved')
+
+                                                        <form action="{{ route('payment')}}" method="post">
+                                                          @csrf
                                                             <a href="" class="font-medium text-red-600  hover:underline">Pay Now</a>
+                                                        </form>    
                                                         @else
                                                             <span class="font-medium text-red-600">Pay Now</span>
                                                         @endif

@@ -20,7 +20,7 @@ class PaymentController extends Controller
     {
         try{
             $response = $this->gateway->purchase (array(
-                'price' => $request->price,
+                'price' => $request->price, 
                 'currency' => env('PAYPAL_CURRENCY'),
                 'returnUrl' => url('success'),
                 'cancelUrl' => url('error')

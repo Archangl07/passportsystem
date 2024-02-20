@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactFormMail;
+
 use App\Models\Appointment; 
 
 use App\Models\Updateprofile; 
@@ -107,6 +110,38 @@ class HomeController extends Controller
         $user = auth()->user();
 
         return view('user.profile_view', compact('user'));
+    }
+
+    public function publichome()
+    {
+        // Retrieve the currently authenticated user
+        $user = auth()->user();
+
+        return view('user.home', compact('user'));
+    }
+
+    public function services()
+    {
+        // Retrieve the currently authenticated user
+        $user = auth()->user();
+
+        return view('user.services', compact('user'));
+    }
+
+    public function about()
+    {
+        // Retrieve the currently authenticated user
+        $user = auth()->user();
+
+        return view('user.about', compact('user'));
+    }
+
+    public function contact()
+    {
+        // Retrieve the currently authenticated user
+        $user = auth()->user();
+
+        return view('user.contact', compact('user'));
     }
 
     public function updateProfile(Request $request)
@@ -371,6 +406,31 @@ class HomeController extends Controller
             }
         } else {
             return redirect()->back()->with('error', 'No application found');
+        }
+    }
+
+
+    public function sendContactForm(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // Get the form data
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $message = $request->input('message');
+
+        // Send email
+        try {
+            Mail::to('azharazeez49@gmail.com')->send(new ContactFormMail($name, $email, $message));
+            
+            return redirect()->back()->with('success', 'Your message has been sent successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong. Please try again later.');
         }
     }
 
